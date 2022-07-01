@@ -9,6 +9,11 @@ Com o usuário(user) voce pode apenas vizualizar as receitas.
 
 ## Layout web
 
+![login](https://user-images.githubusercontent.com/97975671/176974749-253783be-ee6d-4e4f-8eb9-61e7d1ce1518.PNG)
+![tela1](https://user-images.githubusercontent.com/97975671/176974752-6efc4c9d-51b9-401c-bc99-ce4f6473b2ec.PNG)
+![tela2](https://user-images.githubusercontent.com/97975671/176974755-d1f8301e-6fe0-43e8-978d-21b88795bb7d.PNG)
+![tela3](https://user-images.githubusercontent.com/97975671/176974761-c47040d5-ecf8-40f1-b359-5fe37e52ca38.PNG)
+![tela5](https://user-images.githubusercontent.com/97975671/176974764-e66c4b0d-ac6f-459f-95ab-9fed65ee26a4.PNG)
 
 ## Como executar o projeto
 
