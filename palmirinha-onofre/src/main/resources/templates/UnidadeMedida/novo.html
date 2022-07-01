@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+    <div class="alert alert-light" th:if="${mensagem !=null}" th:text="${mensagem}">
+    </div>
+	<div class="card  h-100 border-Light bg-dark">
+		<div class="card-header">
+			<h4 class="text-light">Nova Unidade Medida</h4>
+		</div>
+		<div class="card-body">
+			<form method="POST" th:object="${unidadeMedida}" th:action="@{/unidadeMedida/novo}">
+			<input type="hidden" th:field="*{id}">
+				<div class="form-group mb-3 text-light">
+					<label for="nome">Nome da Unidade de Medida:</label> <input
+					class="form-control" type="text" th:field="*{nome}" placeholder="Ex: Xicara ..." required></input>
+				</div>
+				<button type="submit" class="btn btn-light">Salvar Unidade de Medida</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<body>
+</body>
+</html>

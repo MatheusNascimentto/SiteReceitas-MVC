@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+  <div class="alert alert-light" th:if="${#lists.isEmpty(lista)}">
+     Nenhuma Receita encontrada.
+  </div>
+
+  <div class=" mb-3 ">
+    <img src= "https://receitademestre.com.br/wp-content/uploads/2021/03/logo-receita-de-mestre-RETINA.png" class="rounded-5" length= 100px width = 300px >
+</div>
+   <div class="alert alert-light" th:if="${mensagem !=null}" th:text="${mensagem}"></div>
+   <div class="card h-100 border-Light bg-dark">
+       <div class="card-header">
+          <p class="text-light">Pesquisar Receitas</p>
+       </div>
+       <div class="card-body">
+          <form method="GET">
+             <div class="form-group mb-3 text-light">
+					<label for="nome">Nome da Receita:</label> 
+					<input 
+					class="form-control" type="text" name="nome" th:value="${nome}" placeholder="Ex: Bombom..." ></input>
+				</div>
+				 <div class="form-group mb-3 text-light">
+					<label for="nome">Pesquise por ingredientes:</label> 
+					<input 
+					class="form-control" type="text" name="unidadeEingrediente" th:value="${unidadeEingrediente}" placeholder="Ex: Leite..." ></input>
+				</div>
+				<button type="submit" class=" btn btn-light">Pesquisar Receita</button>
+          </form>
+       </div>
+   </div>
+	<div th:if="${not #lists.isEmpty(lista)}">
+	      <hr class="dropdown-divider">
+	      <hr class="dropdown-divider">
+        <table class="table table-dark mb-3">
+             <thead>
+                <tr class="text-light">
+                  <th>Id</th>
+                  <th>Nome</th>
+                  <th>Tempo Preparo</th>
+                  <th>Adicionais</th>
+                  <!--  <th>Modo de Preparo</th> -->
+                  <th>Opções</th>
+                </tr>
+              </thead>
+              <tdoby>
+                 <tr class="text-light" th:each="Receitas : ${lista}">
+                    <td th:text="${Receitas.id}"></td> 
+                     <td th:text="${Receitas.nome}" width="70%"></td>
+                     <td th:text="${Receitas.tempoDePreparo}"></td>
+                     <!--  <td th:text="${Receitas.ingredientes}"></td>  -->
+                    
+                     <td>
+                          <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Modo de preparo
+                             </button>
+                              <ul class="dropdown-menu">
+                                 <li><a class="dropdown-item" th:text="${Receitas.ModoDePreparo}">Action</a></li>
+                               </ul>
+                                 
+                          <!--  <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Ver  Ingredientes
+                             </button>
+                              <ul class="dropdown-menu">
+                                 <li><a class="dropdown-item" th:text="${Receitas.ingredientes}">Action</a></li>
+                               </ul> -->
+                               
+                               <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Ver  Ingredientes
+                             </button>
+                              <ul class="dropdown-menu">
+                                 <li><a class="dropdown-item" th:text="${Receitas.unidadeEingrediente}">Action</a></li>
+                               </ul>
+                                 </td> 
+                                  
+                     <!--   <td th:text="${Receitas.ModoDePreparo}"></td> -->
+                     <td><a class="btn btn-light btn-sm" th:href="@{/receitas/editar(id=${Receitas.id})}">Editar</a>
+                       <a class="btn btn-light btn-sm" th:href="@{/receitas/excluir(id=${Receitas.id})}" onclick="return confirm('Voce realmente deseja excluir essa Receita?')">Excluir</a>
+                       
+                     </td> 
+                </tr>
+              </tdoby>                 
+        </table>
+	</div>
+</div>
+<body>
+</body>
+</html>

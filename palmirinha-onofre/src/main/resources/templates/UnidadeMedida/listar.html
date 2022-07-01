@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+  <div class="alert alert-light" th:if="${#lists.isEmpty(lista)}">
+     Nenhuma Unidade de Medida encontrada.
+  </div>
+   <div class="alert alert-light" th:if="${mensagem !=null}" th:text="${mensagem}"></div>
+   <div class="card  h-100 border-Light bg-dark">
+       <div class="card-header">
+          <p class="text-light">Pesquisar Unidade de Medida</p>
+       </div>
+       <div class="card-body">
+          <form method="GET">
+             <div class="form-group mb-3 text-light">
+					<label for="nome">Nome da Unidade de Medida:</label> 
+					<input 
+					class="form-control" type="text" name="nome" th:value="${nome}" placeholder="Ex: Colher de Sopa..." ></input>
+				</div>
+				<button type="submit" class=" btn btn-light">Pesquisar Unidade</button>
+          </form>
+       </div>
+   </div>
+   
+	<div th:if="${not #lists.isEmpty(lista)}">
+	      <hr class="dropdown-divider">
+	      <hr class="dropdown-divider">
+        <table class="table table-dark mb-3">
+             <thead>
+                <tr class="text-light">
+                  <th >Id</th>
+                  <th>Nome</th> 
+                  <th>Opções</th>
+                </tr>
+              </thead>
+              <tdoby>
+                 <tr class="text-light" th:each="UnidadeMedida : ${lista}">
+                    <td th:text="${UnidadeMedida.id}"></td> 
+                     <td th:text="${UnidadeMedida.nome}" width="70%"></td>
+                     <td><a class="btn btn-light btn-sm" th:href="@{/unidadeMedida/editar(id=${UnidadeMedida.id})}">Editar</a>
+                       <a class="btn btn-light btn-sm" th:href="@{/unidadeMedida/excluir(id=${UnidadeMedida.id})}" onclick="return confirm('Voce realmente deseja excluir essa Unidade de Medida?')">Excluir</a>
+                     </td>
+                </tr>
+              </tdoby>                 
+        </table>
+	</div>
+</div>
+
+
+<body>
+</body>
+</html>

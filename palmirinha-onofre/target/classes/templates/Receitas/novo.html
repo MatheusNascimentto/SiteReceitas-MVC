@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UFT-8">
+<div layout:fragment="content">
+  <div class="alert alert-light" th:if="${mensagem !=null}" th:text="${mensagem}">
+  </div>
+	<div class="card  h-100 border-Light bg-dark">
+		<div class="card-header">
+			<h3 class="text-light">Nova Receita</h3>
+		</div>
+	<div class="card-body">
+		<form method="POST" th:object="${receitas}" th:action="@{/receitas/editar}">
+			<input type="hidden">  <!--  th:field="*{id}" -->
+				<div class="form-group mb-3 text-light">
+					<label for="nome">Nome da Receita:</label> 
+					<input 
+					class="form-control" type="text" th:field="*{nome}" placeholder="Ex: Brigadeiro..." required></input>
+					<div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+				</div>
+			
+				<div class="form-group mb-3 text-light">
+					<label for="nome">Tempo de Preparo:</label> 
+					<input 
+					class="form-control" type="text"   th:field="*{TempoDePrepararo}" placeholder="Ex: 30 minutos..." required></input>
+					<div class="text-danger" th:if="${#fields.hasErrors('TempoDePrepararo')}" th:errors="*{TempoDePrepararo}"></div>
+				</div>
+					<!--  <div class="form-group mb-3 text-light ">
+					<label for="nome"  class="form-label">Ingredientes:</label> 
+				 
+					<textarea class="form-control" rows="4" th:field="*{Ingredientes}" placeholder="Ex: 1 Xicara de Oleo ..." required></textarea>
+					<div class="text-danger" th:if="${#fields.hasErrors('Ingredientes')}" th:errors="*{Ingredientes}"></div>
+				</div> -->
+				<div class="form-group mb-3 text-light ">
+					<label for="nome"  class="form-label">Ingredientes:</label> 
+				      <div class="text mb-3">
+	                <p class="text-light" > - Escreva cada ingredientes por linha e,para separar,nao use hifen, numeração ou outro marcador. </p>
+				</div> 
+					<textarea class="form-control" rows="4" th:field="*{unidadeEingrediente}" placeholder="Ex: Leve ao forno ..." required></textarea>
+					<div class="text-danger" th:if="${#fields.hasErrors('unidadeEingrediente')}" th:errors="*{unidadeEingrediente}"></div>
+				</div>
+				<div class="form-group mb-3 text-light ">
+					<label for="nome"  class="form-label">Modo De Preparo:</label> 
+				    <div class="text mb-3">
+	                <p class="text-light" > - Descreva os passos por linha e,para separar,nao use hifen, numeração ou outro marcador. </p>
+				</div> 
+					<textarea class="form-control" rows="4" th:field="*{ModoDePreparo}" placeholder="Ex: Leve ao forno ..." required></textarea>
+					<div class="text-danger" th:if="${#fields.hasErrors('ModoDePreparo')}" th:errors="*{ModoDePreparo}"></div>
+				</div>
+				<div class=" text mb-3 center">
+	                <h5 class=" text-center text-light " > ANTES DE ENVIAR </h5>
+				</div> 
+				<div class="text mb-3">
+	                <p class="text-light" > - Revise sua receita para ter certeza das quantidades e os itens listados. </p>
+				</div> 
+				<div class="text mb-3">  
+	                <p class="text-light" >  - As informações serão revisadas e formatadas pelo time do Bom de Garfo. </p>			
+				</div> 
+				<button type="submit" class=" btn btn-light">Salvar Receita</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<body>
+</body>
+</html>

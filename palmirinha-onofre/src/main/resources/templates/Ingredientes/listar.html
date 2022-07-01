@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+  <div class="alert alert-light" th:if="${#lists.isEmpty(lista)}">
+     Nenhum ingrediente encontrado.
+  </div>
+   <div class="alert alert-light" th:if="${mensagem !=null}" th:text="${mensagem}"></div>
+   <div class="card  h-100 border-Light bg-dark">
+       <div class="card-header">
+          <p class="text-light">Pesquisar Ingredientes</p>
+       </div>
+       <div class="card-body">
+          <form method="GET">
+             <div class="form-group mb-3 text-light">
+					<label for="nome">Nome do Ingrediente:</label> 
+					<input 
+					class="form-control" type="text" name="nome" th:value="${nome}" placeholder="Ex: Farinha..." ></input>
+				</div>
+				<button type="submit" class=" btn btn-light">Pesquisar Ingrediente</button>
+          </form>
+       </div>
+   </div>
+  
+   <div class="alert alert-light" th:if="${mensagem !=null}" th:text="${mensagem}"></div>
+	<div th:if="${not #lists.isEmpty(lista)}">
+	      <hr class="dropdown-divider">
+	      <hr class="dropdown-divider">
+        <table class="table table-dark mb-3">
+             <thead>
+                <tr class="text-light">
+                  <th >Id</th>
+                  <th>Nome</th> 
+                  <th>Opções</th>
+                </tr>
+              </thead>
+              <tdoby>
+                 <tr class="text-light" th:each="Ingredientes : ${lista}">
+                    <td th:text="${Ingredientes.id}"></td> 
+                     <td th:text="${Ingredientes.nome}" width="70%"></td>
+                     <td><a class="btn btn-light btn-sm" th:href="@{/ingredientes/editar(id=${Ingredientes.id})}">Editar</a>
+                       <a class="btn btn-light btn-sm" th:href="@{/ingredientes/excluir(id=${Ingredientes.id})}" onclick="return confirm('Voce realmente deseja excluir esse Ingrediente?')">Excluir</a>
+                     </td>
+                </tr>
+              </tdoby>                 
+        </table>
+	</div>
+</div>
+
+
+<body>
+</body>
+</html>
